@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+package money;
+
+option go_package = "github.com/google-source/moneyLotProto/gen/go/money;money";
+
+service MoneyServic {
+    rpc AddMoney(AddMoneyRequest) returns (AddMoneyResponse);
+    rpc ReduceMoney(ReduceMoneyRequest) returns (ReduceMoneyResponse);
+    rpc GetMoneyUser(GetMoneyUserRequest) returns (GetMoneyUserResponse);
+}
+
+message AddMoneyRequest {
+    string userID = 1;
+    float money = 2;
+}
+
+message AddMoneyResponse {
+    bool result = 1;
+}
+
+message ReduceMoneyRequest {
+    string userID = 1;
+    float money = 2;
+}
+
+message ReduceMoneyResponse {
+    bool result = 1;
+}
+
+message GetMoneyUserRequest {
+    string userID = 1;
+}
+
+message GetMoneyUserResponse {
+    float AllMoney = 1;
+}
