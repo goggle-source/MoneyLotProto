@@ -2,12 +2,15 @@ syntax = "proto3";
 
 package money;
 
+import "google/protobuf/any.proto";
+
 option go_package = "github.com/google-source/moneyLotProto/gen/go/money;money";
 
 service MoneyServic {
     rpc AddMoney(AddMoneyRequest) returns (AddMoneyResponse);
     rpc ReduceMoney(ReduceMoneyRequest) returns (ReduceMoneyResponse);
     rpc GetMoneyUser(GetMoneyUserRequest) returns (GetMoneyUserResponse);
+    rpc Health(HealthProductRequest) returns (HealthProductResponse);
 }
 
 message AddMoneyRequest {
@@ -34,4 +37,10 @@ message GetMoneyUserRequest {
 
 message GetMoneyUserResponse {
     float AllMoney = 1;
+}
+
+message HealthProductRequest {}
+
+message HealthProductResponse{
+    map<string, google.protobuf.Any> info = 1;
 }

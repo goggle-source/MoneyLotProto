@@ -9,6 +9,7 @@ package money
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	anypb "google.golang.org/protobuf/types/known/anypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -301,11 +302,91 @@ func (x *GetMoneyUserResponse) GetAllMoney() float32 {
 	return 0
 }
 
+type HealthProductRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HealthProductRequest) Reset() {
+	*x = HealthProductRequest{}
+	mi := &file_money_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HealthProductRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HealthProductRequest) ProtoMessage() {}
+
+func (x *HealthProductRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_money_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HealthProductRequest.ProtoReflect.Descriptor instead.
+func (*HealthProductRequest) Descriptor() ([]byte, []int) {
+	return file_money_proto_rawDescGZIP(), []int{6}
+}
+
+type HealthProductResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Info          map[string]*anypb.Any  `protobuf:"bytes,1,rep,name=info,proto3" json:"info,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *HealthProductResponse) Reset() {
+	*x = HealthProductResponse{}
+	mi := &file_money_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *HealthProductResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*HealthProductResponse) ProtoMessage() {}
+
+func (x *HealthProductResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_money_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use HealthProductResponse.ProtoReflect.Descriptor instead.
+func (*HealthProductResponse) Descriptor() ([]byte, []int) {
+	return file_money_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *HealthProductResponse) GetInfo() map[string]*anypb.Any {
+	if x != nil {
+		return x.Info
+	}
+	return nil
+}
+
 var File_money_proto protoreflect.FileDescriptor
 
 const file_money_proto_rawDesc = "" +
 	"\n" +
-	"\vmoney.proto\x12\x05money\"?\n" +
+	"\vmoney.proto\x12\x05money\x1a\x19google/protobuf/any.proto\"?\n" +
 	"\x0fAddMoneyRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x14\n" +
 	"\x05money\x18\x02 \x01(\x02R\x05money\"*\n" +
@@ -319,11 +400,18 @@ const file_money_proto_rawDesc = "" +
 	"\x13GetMoneyUserRequest\x12\x16\n" +
 	"\x06userID\x18\x01 \x01(\tR\x06userID\"2\n" +
 	"\x14GetMoneyUserResponse\x12\x1a\n" +
-	"\bAllMoney\x18\x01 \x01(\x02R\bAllMoney2\xd9\x01\n" +
+	"\bAllMoney\x18\x01 \x01(\x02R\bAllMoney\"\x16\n" +
+	"\x14HealthProductRequest\"\xa2\x01\n" +
+	"\x15HealthProductResponse\x12:\n" +
+	"\x04info\x18\x01 \x03(\v2&.money.HealthProductResponse.InfoEntryR\x04info\x1aM\n" +
+	"\tInfoEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\tR\x03key\x12*\n" +
+	"\x05value\x18\x02 \x01(\v2\x14.google.protobuf.AnyR\x05value:\x028\x012\x9e\x02\n" +
 	"\vMoneyServic\x12;\n" +
 	"\bAddMoney\x12\x16.money.AddMoneyRequest\x1a\x17.money.AddMoneyResponse\x12D\n" +
 	"\vReduceMoney\x12\x19.money.ReduceMoneyRequest\x1a\x1a.money.ReduceMoneyResponse\x12G\n" +
-	"\fGetMoneyUser\x12\x1a.money.GetMoneyUserRequest\x1a\x1b.money.GetMoneyUserResponseB;Z9github.com/google-source/moneyLotProto/gen/go/money;moneyb\x06proto3"
+	"\fGetMoneyUser\x12\x1a.money.GetMoneyUserRequest\x1a\x1b.money.GetMoneyUserResponse\x12C\n" +
+	"\x06Health\x12\x1b.money.HealthProductRequest\x1a\x1c.money.HealthProductResponseB;Z9github.com/google-source/moneyLotProto/gen/go/money;moneyb\x06proto3"
 
 var (
 	file_money_proto_rawDescOnce sync.Once
@@ -337,27 +425,35 @@ func file_money_proto_rawDescGZIP() []byte {
 	return file_money_proto_rawDescData
 }
 
-var file_money_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_money_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
 var file_money_proto_goTypes = []any{
-	(*AddMoneyRequest)(nil),      // 0: money.AddMoneyRequest
-	(*AddMoneyResponse)(nil),     // 1: money.AddMoneyResponse
-	(*ReduceMoneyRequest)(nil),   // 2: money.ReduceMoneyRequest
-	(*ReduceMoneyResponse)(nil),  // 3: money.ReduceMoneyResponse
-	(*GetMoneyUserRequest)(nil),  // 4: money.GetMoneyUserRequest
-	(*GetMoneyUserResponse)(nil), // 5: money.GetMoneyUserResponse
+	(*AddMoneyRequest)(nil),       // 0: money.AddMoneyRequest
+	(*AddMoneyResponse)(nil),      // 1: money.AddMoneyResponse
+	(*ReduceMoneyRequest)(nil),    // 2: money.ReduceMoneyRequest
+	(*ReduceMoneyResponse)(nil),   // 3: money.ReduceMoneyResponse
+	(*GetMoneyUserRequest)(nil),   // 4: money.GetMoneyUserRequest
+	(*GetMoneyUserResponse)(nil),  // 5: money.GetMoneyUserResponse
+	(*HealthProductRequest)(nil),  // 6: money.HealthProductRequest
+	(*HealthProductResponse)(nil), // 7: money.HealthProductResponse
+	nil,                           // 8: money.HealthProductResponse.InfoEntry
+	(*anypb.Any)(nil),             // 9: google.protobuf.Any
 }
 var file_money_proto_depIdxs = []int32{
-	0, // 0: money.MoneyServic.AddMoney:input_type -> money.AddMoneyRequest
-	2, // 1: money.MoneyServic.ReduceMoney:input_type -> money.ReduceMoneyRequest
-	4, // 2: money.MoneyServic.GetMoneyUser:input_type -> money.GetMoneyUserRequest
-	1, // 3: money.MoneyServic.AddMoney:output_type -> money.AddMoneyResponse
-	3, // 4: money.MoneyServic.ReduceMoney:output_type -> money.ReduceMoneyResponse
-	5, // 5: money.MoneyServic.GetMoneyUser:output_type -> money.GetMoneyUserResponse
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	8, // 0: money.HealthProductResponse.info:type_name -> money.HealthProductResponse.InfoEntry
+	9, // 1: money.HealthProductResponse.InfoEntry.value:type_name -> google.protobuf.Any
+	0, // 2: money.MoneyServic.AddMoney:input_type -> money.AddMoneyRequest
+	2, // 3: money.MoneyServic.ReduceMoney:input_type -> money.ReduceMoneyRequest
+	4, // 4: money.MoneyServic.GetMoneyUser:input_type -> money.GetMoneyUserRequest
+	6, // 5: money.MoneyServic.Health:input_type -> money.HealthProductRequest
+	1, // 6: money.MoneyServic.AddMoney:output_type -> money.AddMoneyResponse
+	3, // 7: money.MoneyServic.ReduceMoney:output_type -> money.ReduceMoneyResponse
+	5, // 8: money.MoneyServic.GetMoneyUser:output_type -> money.GetMoneyUserResponse
+	7, // 9: money.MoneyServic.Health:output_type -> money.HealthProductResponse
+	6, // [6:10] is the sub-list for method output_type
+	2, // [2:6] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_money_proto_init() }
@@ -371,7 +467,7 @@ func file_money_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_money_proto_rawDesc), len(file_money_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   9,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

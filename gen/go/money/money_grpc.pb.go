@@ -22,6 +22,7 @@ const (
 	MoneyServic_AddMoney_FullMethodName     = "/money.MoneyServic/AddMoney"
 	MoneyServic_ReduceMoney_FullMethodName  = "/money.MoneyServic/ReduceMoney"
 	MoneyServic_GetMoneyUser_FullMethodName = "/money.MoneyServic/GetMoneyUser"
+	MoneyServic_Health_FullMethodName       = "/money.MoneyServic/Health"
 )
 
 // MoneyServicClient is the client API for MoneyServic service.
@@ -31,6 +32,7 @@ type MoneyServicClient interface {
 	AddMoney(ctx context.Context, in *AddMoneyRequest, opts ...grpc.CallOption) (*AddMoneyResponse, error)
 	ReduceMoney(ctx context.Context, in *ReduceMoneyRequest, opts ...grpc.CallOption) (*ReduceMoneyResponse, error)
 	GetMoneyUser(ctx context.Context, in *GetMoneyUserRequest, opts ...grpc.CallOption) (*GetMoneyUserResponse, error)
+	Health(ctx context.Context, in *HealthProductRequest, opts ...grpc.CallOption) (*HealthProductResponse, error)
 }
 
 type moneyServicClient struct {
@@ -71,6 +73,16 @@ func (c *moneyServicClient) GetMoneyUser(ctx context.Context, in *GetMoneyUserRe
 	return out, nil
 }
 
+func (c *moneyServicClient) Health(ctx context.Context, in *HealthProductRequest, opts ...grpc.CallOption) (*HealthProductResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HealthProductResponse)
+	err := c.cc.Invoke(ctx, MoneyServic_Health_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MoneyServicServer is the server API for MoneyServic service.
 // All implementations must embed UnimplementedMoneyServicServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type MoneyServicServer interface {
 	AddMoney(context.Context, *AddMoneyRequest) (*AddMoneyResponse, error)
 	ReduceMoney(context.Context, *ReduceMoneyRequest) (*ReduceMoneyResponse, error)
 	GetMoneyUser(context.Context, *GetMoneyUserRequest) (*GetMoneyUserResponse, error)
+	Health(context.Context, *HealthProductRequest) (*HealthProductResponse, error)
 	mustEmbedUnimplementedMoneyServicServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedMoneyServicServer) ReduceMoney(context.Context, *ReduceMoneyR
 }
 func (UnimplementedMoneyServicServer) GetMoneyUser(context.Context, *GetMoneyUserRequest) (*GetMoneyUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMoneyUser not implemented")
+}
+func (UnimplementedMoneyServicServer) Health(context.Context, *HealthProductRequest) (*HealthProductResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Health not implemented")
 }
 func (UnimplementedMoneyServicServer) mustEmbedUnimplementedMoneyServicServer() {}
 func (UnimplementedMoneyServicServer) testEmbeddedByValue()                     {}
@@ -172,6 +188,24 @@ func _MoneyServic_GetMoneyUser_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _MoneyServic_Health_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HealthProductRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MoneyServicServer).Health(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: MoneyServic_Health_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MoneyServicServer).Health(ctx, req.(*HealthProductRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // MoneyServic_ServiceDesc is the grpc.ServiceDesc for MoneyServic service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +224,10 @@ var MoneyServic_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetMoneyUser",
 			Handler:    _MoneyServic_GetMoneyUser_Handler,
+		},
+		{
+			MethodName: "Health",
+			Handler:    _MoneyServic_Health_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
