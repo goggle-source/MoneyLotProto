@@ -236,7 +236,7 @@ func (*GetMoneyUserRequest) Descriptor() ([]byte, []int) {
 
 type GetMoneyUserResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AllMoney      float32                `protobuf:"fixed32,1,opt,name=AllMoney,proto3" json:"AllMoney,omitempty"`
+	AllMoney      float64                `protobuf:"fixed64,1,opt,name=AllMoney,proto3" json:"AllMoney,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -271,7 +271,7 @@ func (*GetMoneyUserResponse) Descriptor() ([]byte, []int) {
 	return file_money_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *GetMoneyUserResponse) GetAllMoney() float32 {
+func (x *GetMoneyUserResponse) GetAllMoney() float64 {
 	if x != nil {
 		return x.AllMoney
 	}
@@ -373,7 +373,7 @@ const file_money_proto_rawDesc = "" +
 	"\x06result\x18\x01 \x01(\bR\x06result\"\x15\n" +
 	"\x13GetMoneyUserRequest\"2\n" +
 	"\x14GetMoneyUserResponse\x12\x1a\n" +
-	"\bAllMoney\x18\x01 \x01(\x02R\bAllMoney\"\x16\n" +
+	"\bAllMoney\x18\x01 \x01(\x01R\bAllMoney\"\x16\n" +
 	"\x14HealthProductRequest\"\xa2\x01\n" +
 	"\x15HealthProductResponse\x12:\n" +
 	"\x04info\x18\x01 \x03(\v2&.money.HealthProductResponse.InfoEntryR\x04info\x1aM\n" +

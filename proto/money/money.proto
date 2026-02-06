@@ -32,7 +32,7 @@ message ReduceMoneyResponse {
 message GetMoneyUserRequest {}
 
 message GetMoneyUserResponse {
-    float AllMoney = 1;
+    double AllMoney = 1;
 }
 
 message HealthProductRequest {}
