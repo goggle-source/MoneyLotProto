@@ -24,7 +24,7 @@ const (
 
 type AddMoneyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Money         float32                `protobuf:"fixed32,2,opt,name=money,proto3" json:"money,omitempty"`
+	Money         float64                `protobuf:"fixed64,2,opt,name=money,proto3" json:"money,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -59,7 +59,7 @@ func (*AddMoneyRequest) Descriptor() ([]byte, []int) {
 	return file_money_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *AddMoneyRequest) GetMoney() float32 {
+func (x *AddMoneyRequest) GetMoney() float64 {
 	if x != nil {
 		return x.Money
 	}
@@ -112,7 +112,7 @@ func (x *AddMoneyResponse) GetResult() bool {
 
 type ReduceMoneyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Money         float32                `protobuf:"fixed32,2,opt,name=money,proto3" json:"money,omitempty"`
+	Money         float64                `protobuf:"fixed64,2,opt,name=money,proto3" json:"money,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -147,7 +147,7 @@ func (*ReduceMoneyRequest) Descriptor() ([]byte, []int) {
 	return file_money_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *ReduceMoneyRequest) GetMoney() float32 {
+func (x *ReduceMoneyRequest) GetMoney() float64 {
 	if x != nil {
 		return x.Money
 	}
@@ -364,11 +364,11 @@ const file_money_proto_rawDesc = "" +
 	"\n" +
 	"\vmoney.proto\x12\x05money\x1a\x19google/protobuf/any.proto\"'\n" +
 	"\x0fAddMoneyRequest\x12\x14\n" +
-	"\x05money\x18\x02 \x01(\x02R\x05money\"*\n" +
+	"\x05money\x18\x02 \x01(\x01R\x05money\"*\n" +
 	"\x10AddMoneyResponse\x12\x16\n" +
 	"\x06result\x18\x01 \x01(\bR\x06result\"*\n" +
 	"\x12ReduceMoneyRequest\x12\x14\n" +
-	"\x05money\x18\x02 \x01(\x02R\x05money\"-\n" +
+	"\x05money\x18\x02 \x01(\x01R\x05money\"-\n" +
 	"\x13ReduceMoneyResponse\x12\x16\n" +
 	"\x06result\x18\x01 \x01(\bR\x06result\"\x15\n" +
 	"\x13GetMoneyUserRequest\"2\n" +

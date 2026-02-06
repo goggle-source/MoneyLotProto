@@ -14,7 +14,7 @@ service MoneyServic {
 }
 
 message AddMoneyRequest {
-    float money = 2;
+    double money = 2;
 }
 
 message AddMoneyResponse {
@@ -22,7 +22,7 @@ message AddMoneyResponse {
 }
 
 message ReduceMoneyRequest {
-    float money = 2;
+    double money = 2;
 }
 
 message ReduceMoneyResponse {
