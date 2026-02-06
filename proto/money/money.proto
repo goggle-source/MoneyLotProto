@@ -14,7 +14,6 @@ service MoneyServic {
 }
 
 message AddMoneyRequest {
-    string userID = 1;
     float money = 2;
 }
 
@@ -23,7 +22,6 @@ message AddMoneyResponse {
 }
 
 message ReduceMoneyRequest {
-    string userID = 1;
     float money = 2;
 }
 
@@ -31,9 +29,7 @@ message ReduceMoneyResponse {
     bool result = 1;
 }
 
-message GetMoneyUserRequest {
-    string userID = 1;
-}
+message GetMoneyUserRequest {}
 
 message GetMoneyUserResponse {
     float AllMoney = 1;

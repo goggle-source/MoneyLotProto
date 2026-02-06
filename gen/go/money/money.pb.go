@@ -24,7 +24,6 @@ const (
 
 type AddMoneyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	Money         float32                `protobuf:"fixed32,2,opt,name=money,proto3" json:"money,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -58,13 +57,6 @@ func (x *AddMoneyRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use AddMoneyRequest.ProtoReflect.Descriptor instead.
 func (*AddMoneyRequest) Descriptor() ([]byte, []int) {
 	return file_money_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *AddMoneyRequest) GetUserID() string {
-	if x != nil {
-		return x.UserID
-	}
-	return ""
 }
 
 func (x *AddMoneyRequest) GetMoney() float32 {
@@ -120,7 +112,6 @@ func (x *AddMoneyResponse) GetResult() bool {
 
 type ReduceMoneyRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	Money         float32                `protobuf:"fixed32,2,opt,name=money,proto3" json:"money,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -154,13 +145,6 @@ func (x *ReduceMoneyRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use ReduceMoneyRequest.ProtoReflect.Descriptor instead.
 func (*ReduceMoneyRequest) Descriptor() ([]byte, []int) {
 	return file_money_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *ReduceMoneyRequest) GetUserID() string {
-	if x != nil {
-		return x.UserID
-	}
-	return ""
 }
 
 func (x *ReduceMoneyRequest) GetMoney() float32 {
@@ -216,7 +200,6 @@ func (x *ReduceMoneyResponse) GetResult() bool {
 
 type GetMoneyUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserID        string                 `protobuf:"bytes,1,opt,name=userID,proto3" json:"userID,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -249,13 +232,6 @@ func (x *GetMoneyUserRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetMoneyUserRequest.ProtoReflect.Descriptor instead.
 func (*GetMoneyUserRequest) Descriptor() ([]byte, []int) {
 	return file_money_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *GetMoneyUserRequest) GetUserID() string {
-	if x != nil {
-		return x.UserID
-	}
-	return ""
 }
 
 type GetMoneyUserResponse struct {
@@ -386,19 +362,16 @@ var File_money_proto protoreflect.FileDescriptor
 
 const file_money_proto_rawDesc = "" +
 	"\n" +
-	"\vmoney.proto\x12\x05money\x1a\x19google/protobuf/any.proto\"?\n" +
-	"\x0fAddMoneyRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x14\n" +
+	"\vmoney.proto\x12\x05money\x1a\x19google/protobuf/any.proto\"'\n" +
+	"\x0fAddMoneyRequest\x12\x14\n" +
 	"\x05money\x18\x02 \x01(\x02R\x05money\"*\n" +
 	"\x10AddMoneyResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\bR\x06result\"B\n" +
-	"\x12ReduceMoneyRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\x12\x14\n" +
+	"\x06result\x18\x01 \x01(\bR\x06result\"*\n" +
+	"\x12ReduceMoneyRequest\x12\x14\n" +
 	"\x05money\x18\x02 \x01(\x02R\x05money\"-\n" +
 	"\x13ReduceMoneyResponse\x12\x16\n" +
-	"\x06result\x18\x01 \x01(\bR\x06result\"-\n" +
-	"\x13GetMoneyUserRequest\x12\x16\n" +
-	"\x06userID\x18\x01 \x01(\tR\x06userID\"2\n" +
+	"\x06result\x18\x01 \x01(\bR\x06result\"\x15\n" +
+	"\x13GetMoneyUserRequest\"2\n" +
 	"\x14GetMoneyUserResponse\x12\x1a\n" +
 	"\bAllMoney\x18\x01 \x01(\x02R\bAllMoney\"\x16\n" +
 	"\x14HealthProductRequest\"\xa2\x01\n" +
